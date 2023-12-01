@@ -5,6 +5,11 @@
 Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.rust-lang.org/).
 
 <!--- advent_readme_stars table --->
+## 2023 Results
+
+| Day | Part 1 | Part 2 |
+| :---: | :---: | :---: |
+<!--| [Day 1](https://adventofcode.com/2023/day/1) | ⭐ | ⭐ |-->
 
 <!--- benchmarking table --->
 
