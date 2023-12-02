@@ -1,8 +1,8 @@
 advent_of_code::solution!(2);
 
-const RED_NUM: u32 = 12;
-const GREEN_NUM: u32 = 13;
-const BLUE_NUM: u32 = 14;
+const R_NUM: u32 = 12;
+const G_NUM: u32 = 13;
+const B_NUM: u32 = 14;
 
 pub struct Game {
     id: u32,
@@ -17,24 +17,34 @@ pub struct Round {
 
 pub fn part_one(input: &str) -> Option<u32> {
     input.split('\n')
-        .filter_map(|line| {
-            let game = parse_game(line);
-            if is_valid(&game) {
-                Some(game)
-            } else {
-                None
-            }
-        })
+        .map(parse_game)
+        .filter(is_valid)
         .map(|game| game.id)
         .reduce(|acc, cur| acc + cur)
 }
 
+pub fn is_valid(game: &Game) -> bool {
+    game.rounds
+        .iter()
+        .all(|round| {
+            round.red <= R_NUM
+                && round.green <= G_NUM
+                && round.blue <= B_NUM
+        })
+}
+
 pub fn parse_game(game: &str) -> Game {
     let mut split_line = game.split(':');
-    let mut game_part = split_line.next().unwrap().trim().split(' ');
-
-    let id = game_part.nth(1).unwrap().parse::<u32>().unwrap();
-
+    let mut game_part = split_line
+        .next()
+        .unwrap()
+        .trim()
+        .split(' ');
+    let id = game_part
+        .nth(1)
+        .unwrap()
+        .parse::<u32>()
+        .unwrap();
     let rounds = split_line
         .next()
         .unwrap()
@@ -47,31 +57,29 @@ pub fn parse_game(game: &str) -> Game {
 }
 
 pub fn parse_round(round: &str) -> Round {
-    let split = round.split(',');
     let mut red = 0;
     let mut green = 0;
     let mut blue = 0;
 
-    for part in split {
-        let mut part_split = part.trim().split(' ');
+    for part in round.split(',') {
+        let mut part_split = part
+            .trim()
+            .split(' ');
+        let num = part_split
+            .next()
+            .unwrap()
+            .parse::<u32>()
+            .unwrap();
 
-        let num = part_split.next().unwrap().parse::<u32>().unwrap();
-
-        let color = part_split.next().unwrap();
-
-        match color {
-            "red" => red = num,
+        match part_split.next().unwrap() {
+            "red"   => red = num,
             "green" => green = num,
-            "blue" => blue = num,
+            "blue"  => blue = num,
             _ => panic!("Invalid color"),
         }
     }
 
     Round { red, green, blue }
-}
-
-pub fn is_valid(game: &Game) -> bool {
-    game.rounds.iter().all(|round| true)
 }
 
 pub fn part_two(input: &str) -> Option<u32> {

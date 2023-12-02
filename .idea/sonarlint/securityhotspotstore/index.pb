@@ -15,3 +15,5 @@ B
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 =
 src/bin/01.rs,9\e\9e3811e438d28bebc22bb15247eeecb33b833f00
+D
+data/examples/02.txt,d\d\dd49a10853aff5952c1332236939f5df7fea1a92
