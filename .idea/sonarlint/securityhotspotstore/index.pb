@@ -17,3 +17,5 @@ B
 src/bin/01.rs,9\e\9e3811e438d28bebc22bb15247eeecb33b833f00
 D
 data/examples/02.txt,d\d\dd49a10853aff5952c1332236939f5df7fea1a92
+B
+data/puzzles/02.md,2\3\231a479c67c463115229f2e03d693e06f9865da2

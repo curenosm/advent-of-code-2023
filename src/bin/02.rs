@@ -16,7 +16,8 @@ pub struct Round {
 }
 
 pub fn part_one(input: &str) -> Option<u32> {
-    input.split('\n')
+    input
+        .split('\n')
         .map(parse_game)
         .filter(is_valid)
         .map(|game| game.id)
@@ -26,25 +27,13 @@ pub fn part_one(input: &str) -> Option<u32> {
 pub fn is_valid(game: &Game) -> bool {
     game.rounds
         .iter()
-        .all(|round| {
-            round.red <= R_NUM
-                && round.green <= G_NUM
-                && round.blue <= B_NUM
-        })
+        .all(|round| round.red <= R_NUM && round.green <= G_NUM && round.blue <= B_NUM)
 }
 
 pub fn parse_game(game: &str) -> Game {
     let mut split_line = game.split(':');
-    let mut game_part = split_line
-        .next()
-        .unwrap()
-        .trim()
-        .split(' ');
-    let id = game_part
-        .nth(1)
-        .unwrap()
-        .parse::<u32>()
-        .unwrap();
+    let mut game_part = split_line.next().unwrap().trim().split(' ');
+    let id = game_part.nth(1).unwrap().parse::<u32>().unwrap();
     let rounds = split_line
         .next()
         .unwrap()
@@ -62,19 +51,13 @@ pub fn parse_round(round: &str) -> Round {
     let mut blue = 0;
 
     for part in round.split(',') {
-        let mut part_split = part
-            .trim()
-            .split(' ');
-        let num = part_split
-            .next()
-            .unwrap()
-            .parse::<u32>()
-            .unwrap();
+        let mut part_split = part.trim().split(' ');
+        let num = part_split.next().unwrap().parse::<u32>().unwrap();
 
         match part_split.next().unwrap() {
-            "red"   => red = num,
+            "red" => red = num,
             "green" => green = num,
-            "blue"  => blue = num,
+            "blue" => blue = num,
             _ => panic!("Invalid color"),
         }
     }
