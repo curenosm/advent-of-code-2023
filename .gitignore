@@ -20,4 +20,7 @@ target/
 data/inputs/*
 !data/inputs/.keep
 data/puzzles/*
-!data/puzzles/.keep
+!data/puzzles/.keep}
+
+.idea
+.vscode
