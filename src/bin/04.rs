@@ -4,7 +4,7 @@ advent_of_code::solution!(4);
 pub struct Card {
     id: u32,
     own_numbers: [u32; 5],
-    winner_numbers: [u32; 8]
+    winner_numbers: [u32; 8],
 }
 
 pub fn part_one(input: &str) -> Option<u32> {
@@ -35,25 +35,14 @@ pub fn clean_row(row: &str) -> &str {
 pub fn parse_card(card_str: &str) -> Card {
     let mut own_numbers = [0; 5];
     let mut winner_numbers = [0; 8];
-    let mut split_line = card_str
-        .split(':')
-        .map(clean_row);
+    let mut split_line = card_str.split(':').map(clean_row);
     let mut card_part = split_line
         .next()
         .unwrap()
         .split(' ')
         .filter(|s| !s.is_empty());
-    let id = card_part
-        .nth(1)
-        .unwrap()
-        .parse::<u32>()
-        .unwrap();
-    let mut numbers_part = split_line
-        .next()
-        .unwrap()
-        .trim()
-        .split('|')
-        .map(clean_row);
+    let id = card_part.nth(1).unwrap().parse::<u32>().unwrap();
+    let mut numbers_part = split_line.next().unwrap().trim().split('|').map(clean_row);
     let own = parse_number_list(numbers_part.next().unwrap());
     let winners = parse_number_list(numbers_part.next().unwrap());
 
@@ -64,7 +53,11 @@ pub fn parse_card(card_str: &str) -> Card {
         winner_numbers[i] = winners[i];
     }
 
-    Card { id, own_numbers, winner_numbers}
+    Card {
+        id,
+        own_numbers,
+        winner_numbers,
+    }
 }
 
 pub fn parse_number_list(numbers_str: &str) -> Vec<u32> {
