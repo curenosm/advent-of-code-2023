@@ -1,3 +1,4 @@
+use advent_of_code::template::tools::{clean_row, parse_number_list};
 advent_of_code::solution!(4);
 
 #[derive(Debug)]
@@ -22,14 +23,6 @@ pub fn part_one(input: &str) -> Option<u32> {
 
 pub fn part_two(input: &str) -> Option<u32> {
     None
-}
-
-pub fn clean_row(row: &str) -> &str {
-    if row.ends_with('\n') || row.ends_with('\r') {
-        row[..row.len() - 1].trim()
-    } else {
-        row.trim()
-    }
 }
 
 pub fn parse_card(card_str: &str) -> Card {
@@ -58,15 +51,6 @@ pub fn parse_card(card_str: &str) -> Card {
         own_numbers,
         winner_numbers,
     }
-}
-
-pub fn parse_number_list(numbers_str: &str) -> Vec<u32> {
-    numbers_str
-        .split(' ')
-        .filter(|s| !s.is_empty())
-        .map(clean_row)
-        .map(|s| s.parse::<u32>().unwrap())
-        .collect::<Vec<u32>>()
 }
 
 pub fn print_cards(cards: &[Card]) {

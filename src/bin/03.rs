@@ -1,3 +1,4 @@
+use advent_of_code::template::tools::{clean_row, parse_number_list};
 advent_of_code::solution!(3);
 
 #[derive(Debug)]
@@ -92,14 +93,6 @@ pub fn print_matrix(matrix: &[Vec<char>]) {
         line.iter().for_each(|c| print!("{}", c));
         println!();
     })
-}
-
-pub fn clean_row(row: &str) -> &str {
-    if row.ends_with('\n') || row.ends_with('\r') {
-        &row[..row.len() - 1]
-    } else {
-        row
-    }
 }
 
 pub fn part_two(input: &str) -> Option<u32> {

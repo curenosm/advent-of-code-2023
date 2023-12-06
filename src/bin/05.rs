@@ -1,3 +1,4 @@
+use advent_of_code::template::tools::{clean_row, parse_number_list};
 use std::collections::HashMap;
 advent_of_code::solution!(5);
 
@@ -67,7 +68,9 @@ pub fn parse_round_mapping(chunk: Vec<&str>) -> RoundMapping {
 }
 
 pub fn get_all_maps(map_structs: &Vec<RoundMapping>) -> Vec<HashMap<u32, u32>> {
-    Vec::new()
+    let mut maps = Vec::new();
+
+    maps
 }
 
 pub fn get_composed_map(maps: Vec<HashMap<u32, u32>>) -> HashMap<u32, u32> {
@@ -87,23 +90,6 @@ pub fn apply_mapping(map: &HashMap<u32, u32>, numbers: &[u32]) -> Vec<u32> {
         .iter()
         .map(|n| *map.get(n).unwrap())
         .collect::<Vec<u32>>()
-}
-
-pub fn parse_number_list(numbers_str: &str) -> Vec<u32> {
-    numbers_str
-        .split(' ')
-        .filter(|s| !s.is_empty())
-        .map(clean_row)
-        .map(|s| s.parse::<u32>().unwrap())
-        .collect::<Vec<u32>>()
-}
-
-pub fn clean_row(row: &str) -> &str {
-    if row.ends_with('\n') || row.ends_with('\r') {
-        row[..row.len() - 1].trim()
-    } else {
-        row.trim()
-    }
 }
 
 #[cfg(test)]

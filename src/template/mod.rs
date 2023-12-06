@@ -5,6 +5,7 @@ pub mod aoc_cli;
 pub mod commands;
 pub mod readme_benchmarks;
 pub mod runner;
+pub mod tools;
 
 pub const ANSI_ITALIC: &str = "\x1b[3m";
 pub const ANSI_BOLD: &str = "\x1b[1m";
