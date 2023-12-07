@@ -13,10 +13,11 @@ const SYMBOLS_TO_FIND: [char; 4] = ['#', '*', '+', '$'];
 pub fn part_one(input: &str) -> Option<u32> {
     let lines = to_matrix(input);
     let all_numbers = get_all_numbers(&lines);
-    println!("All numbers: {:?}", all_numbers);
+    println!("All numbers: {:#?}", all_numbers);
 
     let mut part_numbers: Vec<MatrixNumber> = Vec::new();
-    print_matrix(&lines);
+
+    println!("{:#?}", lines);
 
     for (i, line) in lines.iter().enumerate() {
         for (j, c) in line.iter().enumerate() {
@@ -24,7 +25,7 @@ pub fn part_one(input: &str) -> Option<u32> {
                 println!("Found symbol {} at ({}, {})", c, i, j);
 
                 let adj = get_adjacent_numbers(&lines, i, j, &part_numbers);
-                println!("Adjacent numbers: {:?}", adj);
+                println!("Adjacent numbers: {:#?}", adj);
 
                 part_numbers.push(MatrixNumber {
                     value: 0,

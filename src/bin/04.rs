@@ -13,10 +13,11 @@ pub fn part_one(input: &str) -> Option<u32> {
         .trim()
         .split('\n')
         .map(clean_row)
+        .filter(|s| !s.is_empty())
         .map(parse_card)
         .collect::<Vec<Card>>();
 
-    print_cards(&cards);
+    println!("{:#?}", cards);
 
     None
 }
@@ -51,15 +52,6 @@ pub fn parse_card(card_str: &str) -> Card {
         own_numbers,
         winner_numbers,
     }
-}
-
-pub fn print_cards(cards: &[Card]) {
-    cards.iter().for_each(|card| {
-        println!("Card {}:", card.id);
-        println!("\tOwn numbers: {:?}", card.own_numbers);
-        println!("\tWinner numbers: {:?}", card.winner_numbers);
-        println!();
-    })
 }
 
 #[cfg(test)]

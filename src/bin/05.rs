@@ -52,7 +52,7 @@ pub fn get_round_mappings(input: &str) -> Vec<RoundMapping> {
         .map(clean_row)
         .collect::<Vec<&str>>();
 
-    println!("{:?}", res);
+    println!("{:#?}", res);
 
     Vec::new()
 }

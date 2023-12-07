@@ -11,7 +11,7 @@ pub struct Race {
 pub fn part_one(input: &str) -> Option<u32> {
     let races = parse_races(input);
 
-    println!("{:?}", races);
+    println!("{:#?}", races);
 
     None
 }
